@@ -1,0 +1,292 @@
+2025-05-16 12:28:45,066 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-05-16 12:28:45,070 - __main__ - INFO - Starting Great-Sage...
+2025-05-16 12:28:58,660 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='session_1'
+2025-05-16 12:28:58,661 - __main__ - INFO - Session retrieved.
+2025-05-16 12:28:58,662 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='session_1'
+2025-05-16 12:28:58,663 - __main__ - INFO - Session created.
+2025-05-16 12:29:23,855 - __main__ - INFO - >>> You: List the directories and files inside your project structure
+2025-05-16 12:29:23,863 - __main__ - INFO - Calling agent with query: 'List the directories and files inside your project structure'
+2025-05-16 12:29:24,514 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 12:29:24,516 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant. 
+        Your primary goal is to help users with any task or question they have. 
+        You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+        You have access to two sub-agents:-
+        1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+        2. weather_agent: Agent to answer questions about the time and weather in a city.
+        When a user asks for something that can be answered or executed better by a sub-agent that you possess, then delegate the task to the sub-agent. 
+        Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately. 
+        If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather in a city.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"List the directories and files inside your project structure"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+-----------------------------------------------------------
+
+2025-05-16 12:29:24,516 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 12:29:26,819 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 12:29:26,822 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'],returning concatenated text result from text parts,check out the non text parts for full response from model.
+2025-05-16 12:29:26,823 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'os_agent'}
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"os_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.08816005425019698}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":11,"candidates_tokens_details":[{"modality":"TEXT","token_count":11}],"prompt_token_count":390,"prompt_tokens_details":[{"modality":"TEXT","token_count":390}],"total_token_count":401},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 12:29:26,824 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=FunctionCall(id='adk-abefb862-e820-4fd7-abeb-6b4e2c5aa2a5', args={'agent_name': 'os_agent'}, name='transfer_to_agent'), function_response=None, text=None)] role='model'
+2025-05-16 12:29:26,824 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=FunctionResponse(id='adk-abefb862-e820-4fd7-abeb-6b4e2c5aa2a5', name='transfer_to_agent', response={}), text=None)] role='user'
+2025-05-16 12:29:26,825 - google.adk.tools.function_parameter_parse_util - WARNING - Default value is not supported in function declaration schema for Google AI.
+2025-05-16 12:29:27,223 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 12:29:27,223 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the operating system and file system. 
+        You have access to tools that allow you to list the contents of directories, read the content of files, check if a path exists, and get the current working directory. 
+        Use these tools to answer user questions about the file system or perform requested actions like listing files or reading file content.
+
+You are an agent. Your internal name is "os_agent".
+
+ The description about you is "Agent to answer questions about and interact with the operating system and file system."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather in a city.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent. If you don't have parent agent, try answer by yourself.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"List the directories and files inside your project structure"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'os_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {}"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+list_directory: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+read_file: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+path_exists: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+get_current_working_directory: {} -> None
+-----------------------------------------------------------
+
+2025-05-16 12:29:27,224 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 12:29:29,373 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 12:29:29,378 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'],returning concatenated text result from text parts,check out the non text parts for full response from model.
+2025-05-16 12:29:29,379 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: get_current_working_directory, args: {}
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"function_call":{"args":{},"name":"get_current_working_directory"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.005796231861625399}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":7,"candidates_tokens_details":[{"modality":"TEXT","token_count":7}],"prompt_token_count":562,"prompt_tokens_details":[{"modality":"TEXT","token_count":562}],"total_token_count":569},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 12:29:29,381 - __main__ - INFO -   [Event] Author: os_agent, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=FunctionCall(id='adk-34fe4893-cc3f-4f97-8953-78945aff0737', args={}, name='get_current_working_directory'), function_response=None, text=None)] role='model'
+2025-05-16 12:29:29,383 - __main__ - INFO -   [Event] Author: os_agent, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=FunctionResponse(id='adk-34fe4893-cc3f-4f97-8953-78945aff0737', name='get_current_working_directory', response={'result': 'C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage'}), text=None)] role='user'
+2025-05-16 12:29:29,387 - google.adk.tools.function_parameter_parse_util - WARNING - Default value is not supported in function declaration schema for Google AI.
+2025-05-16 12:29:29,804 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 12:29:29,805 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the operating system and file system. 
+        You have access to tools that allow you to list the contents of directories, read the content of files, check if a path exists, and get the current working directory. 
+        Use these tools to answer user questions about the file system or perform requested actions like listing files or reading file content.
+
+You are an agent. Your internal name is "os_agent".
+
+ The description about you is "Agent to answer questions about and interact with the operating system and file system."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather in a city.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent. If you don't have parent agent, try answer by yourself.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"List the directories and files inside your project structure"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'os_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{},"name":"get_current_working_directory"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"get_current_working_directory","response":{"result":"C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage"}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+list_directory: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+read_file: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+path_exists: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+get_current_working_directory: {} -> None
+-----------------------------------------------------------
+
+2025-05-16 12:29:29,805 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 12:29:31,170 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 12:29:31,176 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'],returning concatenated text result from text parts,check out the non text parts for full response from model.
+2025-05-16 12:29:31,177 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: list_directory, args: {'path': 'C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage'}
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"function_call":{"args":{"path":"C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage"},"name":"list_directory"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.084908660252889}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":30,"candidates_tokens_details":[{"modality":"TEXT","token_count":30}],"prompt_token_count":603,"prompt_tokens_details":[{"modality":"TEXT","token_count":603}],"total_token_count":633},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 12:29:31,179 - __main__ - INFO -   [Event] Author: os_agent, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=FunctionCall(id='adk-514fde41-850e-4b7a-b169-b8d7ab03c1cf', args={'path': 'C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage'}, name='list_directory'), function_response=None, text=None)] role='model'
+2025-05-16 12:29:31,181 - __main__ - INFO -   [Event] Author: os_agent, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=FunctionResponse(id='adk-514fde41-850e-4b7a-b169-b8d7ab03c1cf', name='list_directory', response={'result': "Contents of directory 'C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage':\n.env\n.env.example\n.git\n.gitignore\n.venv\n.vscode\nLICENSE\nlogs\npyproject.toml\nREADME.md\nsrc\ntests\nuv.lock"}), text=None)] role='user'
+2025-05-16 12:29:31,185 - google.adk.tools.function_parameter_parse_util - WARNING - Default value is not supported in function declaration schema for Google AI.
+2025-05-16 12:29:31,605 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 12:29:31,606 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the operating system and file system. 
+        You have access to tools that allow you to list the contents of directories, read the content of files, check if a path exists, and get the current working directory. 
+        Use these tools to answer user questions about the file system or perform requested actions like listing files or reading file content.
+
+You are an agent. Your internal name is "os_agent".
+
+ The description about you is "Agent to answer questions about and interact with the operating system and file system."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather in a city.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent. If you don't have parent agent, try answer by yourself.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"List the directories and files inside your project structure"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'os_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{},"name":"get_current_working_directory"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"get_current_working_directory","response":{"result":"C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage"}}}],"role":"user"}
+{"parts":[{"function_call":{"args":{"path":"C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage"},"name":"list_directory"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"list_directory","response":{"result":"Contents of directory 'C:\\Users\\IAmTheWizard\\Desktop\\New folder (2)\\Projects\\Python\\AgenticPractice\\Great-Sage':\n.env\n.env.example\n.git\n.gitignore\n.venv\n.vscode\nLICENSE\nlogs\npyproject.toml\nREADME.md\nsrc\ntests\nuv.lock"}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+list_directory: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+read_file: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+path_exists: {'path': {'type': <Type.STRING: 'STRING'>}} -> None
+get_current_working_directory: {} -> None
+-----------------------------------------------------------
+
+2025-05-16 12:29:31,606 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 12:29:33,983 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 12:29:33,988 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+Okay, I have listed the files and directories in the project structure. They are: .env, .env.example, .git, .gitignore, .venv, .vscode, LICENSE, logs, pyproject.toml, README.md, src, tests, and uv.lock.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"text":"Okay, I have listed the files and directories in the project structure. They are: .env, .env.example, .git, .gitignore, .venv, .vscode, LICENSE, logs, pyproject.toml, README.md, src, tests, and uv.lock.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.01011229234357034}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":62,"candidates_tokens_details":[{"modality":"TEXT","token_count":62}],"prompt_token_count":711,"prompt_tokens_details":[{"modality":"TEXT","token_count":711}],"total_token_count":773},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 12:29:33,990 - __main__ - INFO -   [Event] Author: os_agent, Type: Event, Final: True, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=None, text='Okay, I have listed the files and directories in the project structure. They are: .env, .env.example, .git, .gitignore, .venv, .vscode, LICENSE, logs, pyproject.toml, README.md, src, tests, and uv.lock.\n')] role='model'
+2025-05-16 12:29:33,991 - __main__ - INFO - Agent response: Okay, I have listed the files and directories in the project structure. They are: .env, .env.example, .git, .gitignore, .venv, .vscode, LICENSE, logs, pyproject.toml, README.md, src, tests, and uv.lock.
+
+2025-05-16 12:35:34,568 - __main__ - INFO - >>> You: quit
+2025-05-16 12:35:34,569 - __main__ - INFO - Exiting the conversation.
