@@ -290,3 +290,2522 @@ Raw response:
 
 2025-05-16 12:35:34,568 - __main__ - INFO - >>> You: quit
 2025-05-16 12:35:34,569 - __main__ - INFO - Exiting the conversation.
+2025-05-16 18:35:36,135 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-05-16 18:35:36,285 - main - INFO - Runner created for agent 'Great_Sage'.
+2025-05-16 18:36:02,246 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-05-16 18:36:02,249 - __main__ - INFO - Starting Great-Sage...
+2025-05-16 18:36:10,101 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='session_1'
+2025-05-16 18:36:10,101 - __main__ - INFO - Session retrieved.
+2025-05-16 18:36:10,102 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='session_1'
+2025-05-16 18:36:10,102 - __main__ - INFO - Session created.
+2025-05-16 18:36:20,758 - __main__ - INFO - >>> You: What is the weather like in tokyo
+2025-05-16 18:36:20,758 - __main__ - INFO - Calling agent with query: 'What is the weather like in tokyo'
+2025-05-16 18:36:21,181 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 18:36:21,189 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant. 
+        Your primary goal is to help users with any task or question they have. 
+        You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+        You have access to two sub-agents:-
+        1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+        2. weather_agent: Agent to answer questions about the time and weather in a city.
+        When a user asks for something that can be answered or executed better by a sub-agent that you possess, then delegate the task to the sub-agent. 
+        Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately. 
+        If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the weather like in tokyo"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+-----------------------------------------------------------
+
+2025-05-16 18:36:21,190 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 18:36:23,689 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 18:36:23,697 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'],returning concatenated text result from text parts,check out the non text parts for full response from model.
+2025-05-16 18:36:23,697 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'weather_time_agent'}
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"weather_time_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.0071463527587743905}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":13,"candidates_tokens_details":[{"modality":"TEXT","token_count":13}],"prompt_token_count":399,"prompt_tokens_details":[{"modality":"TEXT","token_count":399}],"total_token_count":412},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 18:36:23,699 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=FunctionCall(id='adk-ca5ce410-9b42-4707-93e4-9107d9de3d4d', args={'agent_name': 'weather_time_agent'}, name='transfer_to_agent'), function_response=None, text=None)] role='model'
+2025-05-16 18:36:23,700 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=FunctionResponse(id='adk-ca5ce410-9b42-4707-93e4-9107d9de3d4d', name='transfer_to_agent', response={}), text=None)] role='user'
+2025-05-16 18:36:24,034 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 18:36:24,035 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are a helpful agent who can answer user questions about the time and weather in a city.
+        The tool will format the temperature based on user preference stored in state.
+        
+
+You are an agent. Your internal name is "weather_time_agent".
+
+ The description about you is "Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent. If you don't have parent agent, try answer by yourself.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the weather like in tokyo"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'weather_time_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {}"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+get_weather_stateful: {'city': {'type': <Type.STRING: 'STRING'>}} -> None
+get_current_time: {'city': {'type': <Type.STRING: 'STRING'>}} -> None
+-----------------------------------------------------------
+
+2025-05-16 18:36:24,035 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 18:36:26,186 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 18:36:26,187 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'],returning concatenated text result from text parts,check out the non text parts for full response from model.
+2025-05-16 18:36:26,188 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: get_weather_stateful, args: {'city': 'tokyo'}
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"function_call":{"args":{"city":"tokyo"},"name":"get_weather_stateful"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.01441400870680809}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":8,"candidates_tokens_details":[{"modality":"TEXT","token_count":8}],"prompt_token_count":425,"prompt_tokens_details":[{"modality":"TEXT","token_count":425}],"total_token_count":433},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 18:36:26,188 - __main__ - INFO -   [Event] Author: weather_time_agent, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=FunctionCall(id='adk-9cea0cb1-98ce-41eb-a0f3-02ccac909eca', args={'city': 'tokyo'}, name='get_weather_stateful'), function_response=None, text=None)] role='model'
+2025-05-16 18:36:26,189 - agents.tools.weather_tool.weather_tool - INFO - --- Tool: get_weather_stateful called for tokyo ---
+2025-05-16 18:36:26,189 - agents.tools.weather_tool.weather_tool - INFO - --- Tool: Reading state 'user_preference_temperature_unit': Celsius ---
+2025-05-16 18:36:26,190 - agents.tools.weather_tool.weather_tool - INFO - --- Tool: Generated report in Celsius. Result: {'status': 'success', 'report': 'The weather in Tokyo is light rain with a temperature of 18°C.'} ---
+2025-05-16 18:36:26,190 - agents.tools.weather_tool.weather_tool - INFO - --- Tool: Updated state 'last_city_checked_stateful': tokyo ---
+2025-05-16 18:36:26,190 - __main__ - INFO -   [Event] Author: weather_time_agent, Type: Event, Final: False, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=FunctionResponse(id='adk-9cea0cb1-98ce-41eb-a0f3-02ccac909eca', name='get_weather_stateful', response={'status': 'success', 'report': 'The weather in Tokyo is light rain with a temperature of 18°C.'}), text=None)] role='user'
+2025-05-16 18:36:26,521 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 18:36:26,522 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are a helpful agent who can answer user questions about the time and weather in a city.
+        The tool will format the temperature based on user preference stored in state.
+        
+
+You are an agent. Your internal name is "weather_time_agent".
+
+ The description about you is "Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent. If you don't have parent agent, try answer by yourself.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the weather like in tokyo"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'weather_time_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"city":"tokyo"},"name":"get_weather_stateful"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"get_weather_stateful","response":{"status":"success","report":"The weather in Tokyo is light rain with a temperature of 18°C."}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+get_weather_stateful: {'city': {'type': <Type.STRING: 'STRING'>}} -> None
+get_current_time: {'city': {'type': <Type.STRING: 'STRING'>}} -> None
+-----------------------------------------------------------
+
+2025-05-16 18:36:26,523 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 18:36:28,744 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 18:36:28,746 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+OK. The weather in Tokyo is light rain with a temperature of 18°C.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"text":"OK. The weather in Tokyo is light rain with a temperature of 18°C.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.00003386682365089655}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":20,"candidates_tokens_details":[{"modality":"TEXT","token_count":20}],"prompt_token_count":459,"prompt_tokens_details":[{"modality":"TEXT","token_count":459}],"total_token_count":479},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 18:36:28,746 - __main__ - INFO -   [Event] Author: weather_time_agent, Type: Event, Final: True, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=None, text='OK. The weather in Tokyo is light rain with a temperature of 18°C.\n')] role='model'
+2025-05-16 18:36:28,747 - __main__ - INFO - Agent response: OK. The weather in Tokyo is light rain with a temperature of 18°C.
+
+2025-05-16 18:36:57,954 - __main__ - INFO - >>> You: from now on response to temp in Farenheit
+2025-05-16 18:36:57,955 - __main__ - INFO - Calling agent with query: 'from now on response to temp in Farenheit'
+2025-05-16 18:36:58,293 - google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: ml_dev, stream: False
+2025-05-16 18:36:58,293 - google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are a helpful agent who can answer user questions about the time and weather in a city.
+        The tool will format the temperature based on user preference stored in state.
+        
+
+You are an agent. Your internal name is "weather_time_agent".
+
+ The description about you is "Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent. If you don't have parent agent, try answer by yourself.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the weather like in tokyo"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'weather_time_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"city":"tokyo"},"name":"get_weather_stateful"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"get_weather_stateful","response":{"status":"success","report":"The weather in Tokyo is light rain with a temperature of 18°C."}}}],"role":"user"}
+{"parts":[{"text":"OK. The weather in Tokyo is light rain with a temperature of 18°C.\n"}],"role":"model"}
+{"parts":[{"text":"from now on response to temp in Farenheit"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} -> None
+get_weather_stateful: {'city': {'type': <Type.STRING: 'STRING'>}} -> None
+get_current_time: {'city': {'type': <Type.STRING: 'STRING'>}} -> None
+-----------------------------------------------------------
+
+2025-05-16 18:36:58,294 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-05-16 18:37:00,939 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-05-16 18:37:00,941 - google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I cannot fulfill this request. The available tools lack the functionality to set the temperature unit. Would you like me to get the weather report for you?
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"candidates":[{"content":{"parts":[{"text":"I cannot fulfill this request. The available tools lack the functionality to set the temperature unit. Would you like me to get the weather report for you?\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.21658305198915542}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":31,"candidates_tokens_details":[{"modality":"TEXT","token_count":31}],"prompt_token_count":489,"prompt_tokens_details":[{"modality":"TEXT","token_count":489}],"total_token_count":520},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-05-16 18:37:00,942 - __main__ - INFO -   [Event] Author: weather_time_agent, Type: Event, Final: True, Content: parts=[Part(video_metadata=None, thought=None, inline_data=None, code_execution_result=None, executable_code=None, file_data=None, function_call=None, function_response=None, text='I cannot fulfill this request. The available tools lack the functionality to set the temperature unit. Would you like me to get the weather report for you?\n')] role='model'
+2025-05-16 18:37:00,943 - __main__ - INFO - Agent response: I cannot fulfill this request. The available tools lack the functionality to set the temperature unit. Would you like me to get the weather report for you?
+
+2025-05-16 18:38:24,630 - __main__ - INFO - >>> You: quit
+2025-05-16 18:38:24,631 - __main__ - INFO - Exiting the conversation.
+2025-07-04 01:30:05,282 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 01:30:05,293 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 01:30:17,034 - __main__ - INFO - Getting session with App='Great_Sage', User='1', Session='12'
+2025-07-04 01:30:17,035 - __main__ - INFO - Session retrieved.
+2025-07-04 01:30:38,387 - __main__ - INFO - >>> You: What is the current market price of gold in India?
+2025-07-04 01:30:38,387 - __main__ - INFO - Calling agent with query: 'What is the current market price of gold in India?'
+2025-07-04 01:30:38,388 - __main__ - ERROR - An error occurred: Session not found: 12
+2025-07-04 01:31:09,943 - __main__ - ERROR - An error occurred: 
+2025-07-04 01:31:14,188 - __main__ - INFO - >>> You: quit
+2025-07-04 01:31:14,189 - __main__ - INFO - Exiting the conversation.
+2025-07-04 01:33:19,753 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 01:33:19,756 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 01:33:23,088 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='e715e30e-8109-40e5-a290-31a51d11bc79'
+2025-07-04 01:33:23,089 - __main__ - INFO - Session retrieved.
+2025-07-04 01:34:38,036 - __main__ - INFO - >>> You: quit
+2025-07-04 01:34:38,036 - __main__ - INFO - Exiting the conversation.
+2025-07-04 01:34:50,087 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 01:34:50,091 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 01:34:53,265 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='5ed838d5-8704-4c52-9122-fb8bde0a5b56'
+2025-07-04 01:34:53,266 - __main__ - INFO - Session retrieved.
+2025-07-04 01:34:53,267 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='5ed838d5-8704-4c52-9122-fb8bde0a5b56'
+2025-07-04 01:34:53,277 - __main__ - INFO - Session created.
+2025-07-04 01:38:17,407 - __main__ - INFO - >>> You: quit
+2025-07-04 01:38:17,408 - __main__ - INFO - Exiting the conversation.
+2025-07-04 01:38:35,836 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 01:38:35,840 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 01:38:42,173 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='c1eefa4d-6e47-40f8-beba-ab7a2fccf04e'
+2025-07-04 01:38:42,174 - __main__ - INFO - Session retrieved.
+2025-07-04 01:38:42,175 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='c1eefa4d-6e47-40f8-beba-ab7a2fccf04e'
+2025-07-04 01:38:42,175 - __main__ - INFO - Session created.
+2025-07-04 01:38:54,369 - __main__ - INFO - >>> You: What is the current gold price in India?
+2025-07-04 01:38:54,371 - __main__ - INFO - Calling agent with query: 'What is the current gold price in India?'
+2025-07-04 01:38:54,376 - src.agents.security.model_guardrail - INFO - --- Callback: block_keyword_guardrail running for agent: Great_Sage ---
+2025-07-04 01:38:54,378 - src.agents.security.model_guardrail - INFO - --- Callback: Inspecting last user message: 'What is the current gold price in India?...' ---
+2025-07-04 01:38:54,379 - src.agents.security.model_guardrail - INFO - --- Callback: Keyword not found. Allowing LLM call for Great_Sage. ---
+2025-07-04 01:38:56,541 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 01:38:56,549 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to three sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            3. search_agent: Agent to answer questions by searching the web for information, providing general knowledge, and delivering up-to-date results using the DuckDuckGo Search Engine.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves searching the web, general knowledge, or up-to-date information, use the search_agent to provide the most relevant and current results.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: search_agent
+Agent description: Agent to answer questions using DuckDuckGo Search Engine.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current gold price in India?"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 01:38:56,550 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 01:38:57,649 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 01:38:57,666 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 01:38:57,668 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'search_agent'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:08:57 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=920","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"search_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.010836858641017567}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":11,"candidates_tokens_details":[{"modality":"TEXT","token_count":11}],"prompt_token_count":547,"prompt_tokens_details":[{"modality":"TEXT","token_count":547}],"total_token_count":558},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 01:38:57,672 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'agent_name': 'search_agent'
+    },
+    id='adk-26ad6104-2bab-4b47-a290-a0dec06f5b14',
+    name='transfer_to_agent'
+  )
+)] role='model'
+2025-07-04 01:38:57,674 - src.agents.security.tool_guardrail - INFO - --- Callback: block_paris_tool_guardrail running for tool 'transfer_to_agent' in agent 'Great_Sage' ---
+2025-07-04 01:38:57,676 - src.agents.security.tool_guardrail - INFO - --- Callback: Inspecting args: {'agent_name': 'search_agent'} ---
+2025-07-04 01:38:57,678 - src.agents.security.tool_guardrail - INFO - --- Callback: Allowing tool 'transfer_to_agent' to proceed. ---
+2025-07-04 01:38:57,680 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-26ad6104-2bab-4b47-a290-a0dec06f5b14',
+    name='transfer_to_agent',
+    response={
+      'result': None
+    }
+  )
+)] role='user'
+2025-07-04 01:39:02,884 - __main__ - ERROR - An error occurred: Timed out while waiting for response to ClientRequest. Waited 5.0 seconds.
+2025-07-04 01:41:41,937 - __main__ - INFO - >>> You: quit
+2025-07-04 01:41:41,938 - __main__ - INFO - Exiting the conversation.
+2025-07-04 01:48:54,583 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 01:48:54,588 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 01:48:56,910 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='11214c85-4b62-468d-929b-09b734c18767'
+2025-07-04 01:48:56,911 - __main__ - INFO - Session retrieved.
+2025-07-04 01:48:56,912 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='11214c85-4b62-468d-929b-09b734c18767'
+2025-07-04 01:48:56,913 - __main__ - INFO - Session created.
+2025-07-04 01:49:08,124 - __main__ - INFO - >>> You: What is the current gold price in India?
+2025-07-04 01:49:08,125 - __main__ - INFO - Calling agent with query: 'What is the current gold price in India?'
+2025-07-04 01:49:08,127 - src.agents.security.model_guardrail - INFO - --- Callback: block_keyword_guardrail running for agent: Great_Sage ---
+2025-07-04 01:49:08,128 - src.agents.security.model_guardrail - INFO - --- Callback: Inspecting last user message: 'What is the current gold price in India?...' ---
+2025-07-04 01:49:08,128 - src.agents.security.model_guardrail - INFO - --- Callback: Keyword not found. Allowing LLM call for Great_Sage. ---
+2025-07-04 01:49:11,382 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 01:49:11,382 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to three sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            3. search_agent: Agent to answer questions by searching the web for information, providing general knowledge, and delivering up-to-date results using the DuckDuckGo Search Engine.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves searching the web, general knowledge, or up-to-date information, use the search_agent to provide the most relevant and current results.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: search_agent
+Agent description: Agent to answer questions using DuckDuckGo Search Engine.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current gold price in India?"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 01:49:11,383 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 01:49:13,839 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 01:49:13,841 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 01:49:13,841 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'search_agent'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:19:13 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2130","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"search_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.010836858641017567}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":11,"candidates_tokens_details":[{"modality":"TEXT","token_count":11}],"prompt_token_count":547,"prompt_tokens_details":[{"modality":"TEXT","token_count":547}],"total_token_count":558},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 01:49:13,843 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'agent_name': 'search_agent'
+    },
+    id='adk-72bedb2c-3bae-4481-8574-18e5b8c5022d',
+    name='transfer_to_agent'
+  )
+)] role='model'
+2025-07-04 01:49:13,844 - src.agents.security.tool_guardrail - INFO - --- Callback: block_paris_tool_guardrail running for tool 'transfer_to_agent' in agent 'Great_Sage' ---
+2025-07-04 01:49:13,844 - src.agents.security.tool_guardrail - INFO - --- Callback: Inspecting args: {'agent_name': 'search_agent'} ---
+2025-07-04 01:49:13,845 - src.agents.security.tool_guardrail - INFO - --- Callback: Allowing tool 'transfer_to_agent' to proceed. ---
+2025-07-04 01:49:13,846 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-72bedb2c-3bae-4481-8574-18e5b8c5022d',
+    name='transfer_to_agent',
+    response={
+      'result': None
+    }
+  )
+)] role='user'
+2025-07-04 01:49:18,172 - google_adk.google.adk.tools.base_authenticated_tool - WARNING - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-07-04 01:49:18,943 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 01:49:18,944 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current gold price in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 01:49:18,945 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 01:49:21,213 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 01:49:21,219 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 01:49:21,221 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: duckduckgo_web_search, args: {'query': 'current gold price in India', 'count': 3}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:19:21 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2232","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"query":"current gold price in India","count":3},"name":"duckduckgo_web_search"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.022384468714396158}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":15,"candidates_tokens_details":[{"modality":"TEXT","token_count":15}],"prompt_token_count":559,"prompt_tokens_details":[{"modality":"TEXT","token_count":559}],"total_token_count":574},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 01:49:21,226 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'count': 3,
+      'query': 'current gold price in India'
+    },
+    id='adk-2e79031c-fd8c-49b5-b13b-0cec1b237bd6',
+    name='duckduckgo_web_search'
+  )
+)] role='model'
+2025-07-04 01:49:22,413 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-2e79031c-fd8c-49b5-b13b-0cec1b237bd6',
+    name='duckduckgo_web_search',
+    response={
+      'result': CallToolResult(
+        content=[
+          TextContent(
+            text="Error: Cannot read properties of null (reading '1')",
+            type='text'
+          ),
+        ],
+        isError=True
+      )
+    }
+  )
+)] role='user'
+2025-07-04 01:49:22,417 - google_adk.google.adk.tools.base_authenticated_tool - WARNING - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-07-04 01:49:23,171 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 01:49:23,172 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current gold price in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"query":"current gold price in India","count":3},"name":"duckduckgo_web_search"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"duckduckgo_web_search","response":{"result":{"content":[{"type":"text","text":"Error: Cannot read properties of null (reading '1')"}],"isError":true}}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 01:49:23,173 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 01:49:25,409 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 01:49:25,410 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I am sorry, I cannot fulfill this request. An error occurred while trying to fetch the information.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:19:25 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2194","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I am sorry, I cannot fulfill this request. An error occurred while trying to fetch the information.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.34383069901239305}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":21,"candidates_tokens_details":[{"modality":"TEXT","token_count":21}],"prompt_token_count":600,"prompt_tokens_details":[{"modality":"TEXT","token_count":600}],"total_token_count":621},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 01:49:25,411 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: True, Content: parts=[Part(
+  text="""I am sorry, I cannot fulfill this request. An error occurred while trying to fetch the information.
+"""
+)] role='model'
+2025-07-04 01:49:25,412 - __main__ - INFO - Agent response: I am sorry, I cannot fulfill this request. An error occurred while trying to fetch the information.
+
+2025-07-04 01:50:26,260 - __main__ - INFO - >>> You: quit
+2025-07-04 01:50:26,261 - __main__ - INFO - Exiting the conversation.
+2025-07-04 01:50:26,307 - asyncio - ERROR - an error occurred during closing of asynchronous generator <async_generator object stdio_client at 0x000001ABAFC03100>
+asyncgen: <async_generator object stdio_client at 0x000001ABAFC03100>
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | BaseExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 179, in stdio_client
+    |     yield read_stream, write_stream
+    | GeneratorExit
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 173, in stdio_client
+    anyio.create_task_group() as tg,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 778, in __aexit__
+    if self.cancel_scope.__exit__(type(exc), exc, exc.__traceback__):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 457, in __exit__
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: Attempted to exit cancel scope in a different task than it was entered in
+2025-07-04 02:18:55,478 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 02:18:55,481 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 02:18:57,549 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='c85d7a4e-4cdb-4047-ba77-d28d8cf49006'
+2025-07-04 02:18:57,550 - __main__ - INFO - Session retrieved.
+2025-07-04 02:18:57,551 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='c85d7a4e-4cdb-4047-ba77-d28d8cf49006'
+2025-07-04 02:18:57,551 - __main__ - INFO - Session created.
+2025-07-04 02:19:09,440 - __main__ - INFO - >>> You: go to this webpage and get me the data https://modelcontextprotocol.io/introduction
+2025-07-04 02:19:09,441 - __main__ - INFO - Calling agent with query: 'go to this webpage and get me the data https://modelcontextprotocol.io/introduction'
+2025-07-04 02:19:09,442 - src.agents.security.model_guardrail - INFO - --- Callback: block_keyword_guardrail running for agent: Great_Sage ---
+2025-07-04 02:19:09,443 - src.agents.security.model_guardrail - INFO - --- Callback: Inspecting last user message: 'go to this webpage and get me the data https://modelcontextprotocol.io/introduction...' ---
+2025-07-04 02:19:09,443 - src.agents.security.model_guardrail - INFO - --- Callback: Keyword not found. Allowing LLM call for Great_Sage. ---
+2025-07-04 02:19:10,281 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 02:19:10,282 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to four sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            3. search_agent: Agent to answer questions by searching the web for information, providing general knowledge, and delivering up-to-date results using the DuckDuckGo Search Engine.
+            4. websurf_agent: Agent to fetch and extract content from web pages given a URL, providing users with the main text or relevant information from any website they provide.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves searching the web, general knowledge, or up-to-date information, use the search_agent to provide the most relevant and current results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the websurf_agent to retrieve and present the information.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: search_agent
+Agent description: Agent to answer questions using DuckDuckGo Search Engine.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"go to this webpage and get me the data https://modelcontextprotocol.io/introduction"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 02:19:10,284 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 02:19:12,430 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 02:19:12,438 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 02:19:12,440 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'websurf_agent'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:49:12 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1952","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"websurf_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.06048704187075297}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":12,"candidates_tokens_details":[{"modality":"TEXT","token_count":12}],"prompt_token_count":651,"prompt_tokens_details":[{"modality":"TEXT","token_count":651}],"total_token_count":663},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 02:19:12,443 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'agent_name': 'websurf_agent'
+    },
+    id='adk-5b5502b8-92b6-4c0c-9208-c817f751c362',
+    name='transfer_to_agent'
+  )
+)] role='model'
+2025-07-04 02:19:12,445 - src.agents.security.tool_guardrail - INFO - --- Callback: block_paris_tool_guardrail running for tool 'transfer_to_agent' in agent 'Great_Sage' ---
+2025-07-04 02:19:12,447 - src.agents.security.tool_guardrail - INFO - --- Callback: Inspecting args: {'agent_name': 'websurf_agent'} ---
+2025-07-04 02:19:12,449 - src.agents.security.tool_guardrail - INFO - --- Callback: Allowing tool 'transfer_to_agent' to proceed. ---
+2025-07-04 02:19:12,452 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-5b5502b8-92b6-4c0c-9208-c817f751c362',
+    name='transfer_to_agent',
+    response={
+      'result': None
+    }
+  )
+)] role='user'
+2025-07-04 02:19:15,893 - __main__ - ERROR - An error occurred: Connection closed
+2025-07-04 02:19:54,118 - __main__ - INFO - >>> You: what is the current gold price in India?
+2025-07-04 02:19:54,119 - __main__ - INFO - Calling agent with query: 'what is the current gold price in India?'
+2025-07-04 02:19:54,121 - src.agents.security.model_guardrail - INFO - --- Callback: block_keyword_guardrail running for agent: Great_Sage ---
+2025-07-04 02:19:54,121 - src.agents.security.model_guardrail - INFO - --- Callback: Inspecting last user message: 'what is the current gold price in India?...' ---
+2025-07-04 02:19:54,121 - src.agents.security.model_guardrail - INFO - --- Callback: Keyword not found. Allowing LLM call for Great_Sage. ---
+2025-07-04 02:19:54,935 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 02:19:54,936 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to four sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            3. search_agent: Agent to answer questions by searching the web for information, providing general knowledge, and delivering up-to-date results using the DuckDuckGo Search Engine.
+            4. websurf_agent: Agent to fetch and extract content from web pages given a URL, providing users with the main text or relevant information from any website they provide.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves searching the web, general knowledge, or up-to-date information, use the search_agent to provide the most relevant and current results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the websurf_agent to retrieve and present the information.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: search_agent
+Agent description: Agent to answer questions using DuckDuckGo Search Engine.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"go to this webpage and get me the data https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"agent_name":"websurf_agent"},"name":"transfer_to_agent"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"transfer_to_agent","response":{"result":null}}}],"role":"user"}
+{"parts":[{"text":"what is the current gold price in India?"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 02:19:54,937 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 02:19:56,920 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 02:19:56,926 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 02:19:56,927 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'search_agent'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:49:56 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1819","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"search_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.0003815717487172647}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":11,"candidates_tokens_details":[{"modality":"TEXT","token_count":11}],"prompt_token_count":679,"prompt_tokens_details":[{"modality":"TEXT","token_count":679}],"total_token_count":690},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 02:19:56,931 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'agent_name': 'search_agent'
+    },
+    id='adk-b17ff9ab-ac27-4df1-9916-cbe38f5524c5',
+    name='transfer_to_agent'
+  )
+)] role='model'
+2025-07-04 02:19:56,933 - src.agents.security.tool_guardrail - INFO - --- Callback: block_paris_tool_guardrail running for tool 'transfer_to_agent' in agent 'Great_Sage' ---
+2025-07-04 02:19:56,934 - src.agents.security.tool_guardrail - INFO - --- Callback: Inspecting args: {'agent_name': 'search_agent'} ---
+2025-07-04 02:19:56,936 - src.agents.security.tool_guardrail - INFO - --- Callback: Allowing tool 'transfer_to_agent' to proceed. ---
+2025-07-04 02:19:56,939 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-b17ff9ab-ac27-4df1-9916-cbe38f5524c5',
+    name='transfer_to_agent',
+    response={
+      'result': None
+    }
+  )
+)] role='user'
+2025-07-04 02:20:00,949 - google_adk.google.adk.tools.base_authenticated_tool - WARNING - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-07-04 02:20:01,739 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 02:20:01,740 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"go to this webpage and get me the data https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'websurf_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"text":"what is the current gold price in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 02:20:01,741 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 02:20:03,849 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 02:20:03,855 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 02:20:03,857 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: duckduckgo_web_search, args: {'count': 3, 'query': 'current gold price in India'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:50:03 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1958","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"count":3,"query":"current gold price in India"},"name":"duckduckgo_web_search"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.0024612024426460266}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":15,"candidates_tokens_details":[{"modality":"TEXT","token_count":15}],"prompt_token_count":656,"prompt_tokens_details":[{"modality":"TEXT","token_count":656}],"total_token_count":671},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 02:20:03,861 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'count': 3,
+      'query': 'current gold price in India'
+    },
+    id='adk-835f137d-7975-4eaf-ae12-0ec7fcd4896c',
+    name='duckduckgo_web_search'
+  )
+)] role='model'
+2025-07-04 02:20:04,945 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-835f137d-7975-4eaf-ae12-0ec7fcd4896c',
+    name='duckduckgo_web_search',
+    response={
+      'result': CallToolResult(
+        content=[
+          TextContent(
+            text="Error: Cannot read properties of null (reading '1')",
+            type='text'
+          ),
+        ],
+        isError=True
+      )
+    }
+  )
+)] role='user'
+2025-07-04 02:20:04,964 - google_adk.google.adk.tools.base_authenticated_tool - WARNING - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-07-04 02:20:06,781 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 02:20:06,782 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"go to this webpage and get me the data https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'websurf_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"text":"what is the current gold price in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"count":3,"query":"current gold price in India"},"name":"duckduckgo_web_search"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"duckduckgo_web_search","response":{"result":{"content":[{"type":"text","text":"Error: Cannot read properties of null (reading '1')"}],"isError":true}}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 02:20:06,783 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 02:20:07,924 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 02:20:07,926 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 02:20:07,926 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I encountered an error while trying to fetch the current gold price in India. I'll try a different search query.
+
+-----------------------------------------------------------
+Function calls:
+name: duckduckgo_web_search, args: {'count': 3, 'query': 'gold price today in India'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:50:07 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=983","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I encountered an error while trying to fetch the current gold price in India. I'll try a different search query.\n"},{"function_call":{"args":{"count":3,"query":"gold price today in India"},"name":"duckduckgo_web_search"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.13147855997085572}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":40,"candidates_tokens_details":[{"modality":"TEXT","token_count":40}],"prompt_token_count":697,"prompt_tokens_details":[{"modality":"TEXT","token_count":697}],"total_token_count":737},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 02:20:07,928 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  text="""I encountered an error while trying to fetch the current gold price in India. I'll try a different search query.
+"""
+), Part(
+  function_call=FunctionCall(
+    args={
+      'count': 3,
+      'query': 'gold price today in India'
+    },
+    id='adk-31bfb8fc-868d-4734-b6ad-d01948c150d9',
+    name='duckduckgo_web_search'
+  )
+)] role='model'
+2025-07-04 02:20:08,143 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-31bfb8fc-868d-4734-b6ad-d01948c150d9',
+    name='duckduckgo_web_search',
+    response={
+      'result': CallToolResult(
+        content=[
+          TextContent(
+            text="Error: Cannot read properties of null (reading '1')",
+            type='text'
+          ),
+        ],
+        isError=True
+      )
+    }
+  )
+)] role='user'
+2025-07-04 02:20:08,148 - google_adk.google.adk.tools.base_authenticated_tool - WARNING - auth_config or auth_config.auth_scheme is missing. Will skip authentication.Using FunctionTool instead if authentication is not required.
+2025-07-04 02:20:10,821 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 02:20:10,824 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"go to this webpage and get me the data https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'websurf_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"text":"what is the current gold price in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"count":3,"query":"current gold price in India"},"name":"duckduckgo_web_search"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"duckduckgo_web_search","response":{"result":{"content":[{"type":"text","text":"Error: Cannot read properties of null (reading '1')"}],"isError":true}}}}],"role":"user"}
+{"parts":[{"text":"I encountered an error while trying to fetch the current gold price in India. I'll try a different search query.\n"},{"function_call":{"args":{"count":3,"query":"gold price today in India"},"name":"duckduckgo_web_search"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"duckduckgo_web_search","response":{"result":{"content":[{"type":"text","text":"Error: Cannot read properties of null (reading '1')"}],"isError":true}}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 02:20:10,827 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 02:20:13,024 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 02:20:13,026 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I'm still encountering an error. It seems I am unable to retrieve the information at this time. I suggest trying again later or consulting a financial website directly for the most up-to-date information.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Thu, 03 Jul 2025 20:50:12 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1998","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I'm still encountering an error. It seems I am unable to retrieve the information at this time. I suggest trying again later or consulting a financial website directly for the most up-to-date information.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.18734665804131087}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":43,"candidates_tokens_details":[{"modality":"TEXT","token_count":43}],"prompt_token_count":763,"prompt_tokens_details":[{"modality":"TEXT","token_count":763}],"total_token_count":806},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 02:20:13,027 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: True, Content: parts=[Part(
+  text="""I'm still encountering an error. It seems I am unable to retrieve the information at this time. I suggest trying again later or consulting a financial website directly for the most up-to-date information.
+"""
+)] role='model'
+2025-07-04 02:20:13,028 - __main__ - INFO - Agent response: I'm still encountering an error. It seems I am unable to retrieve the information at this time. I suggest trying again later or consulting a financial website directly for the most up-to-date information.
+
+2025-07-04 10:47:47,515 - __main__ - INFO - >>> You: quit
+2025-07-04 10:47:47,516 - __main__ - INFO - Exiting the conversation.
+2025-07-04 10:47:47,573 - asyncio - ERROR - an error occurred during closing of asynchronous generator <async_generator object stdio_client at 0x000001D43ADA3C40>
+asyncgen: <async_generator object stdio_client at 0x000001D43ADA3C40>
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | BaseExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 179, in stdio_client
+    |     yield read_stream, write_stream
+    | GeneratorExit
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 173, in stdio_client
+    anyio.create_task_group() as tg,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 778, in __aexit__
+    if self.cancel_scope.__exit__(type(exc), exc, exc.__traceback__):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 457, in __exit__
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: Attempted to exit cancel scope in a different task than it was entered in
+2025-07-04 10:55:32,128 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 10:55:32,134 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 10:56:46,523 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='d069ba36-bbc9-4fe5-a61c-027eaa7fcd7e'
+2025-07-04 10:56:46,524 - __main__ - INFO - Session retrieved.
+2025-07-04 10:56:46,524 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='d069ba36-bbc9-4fe5-a61c-027eaa7fcd7e'
+2025-07-04 10:56:46,524 - __main__ - INFO - Session created.
+2025-07-04 10:56:58,113 - __main__ - INFO - >>> You: What is the current market price of gold in India?
+2025-07-04 10:56:58,114 - __main__ - INFO - Calling agent with query: 'What is the current market price of gold in India?'
+2025-07-04 10:56:58,116 - src.agents.security.model_guardrail - INFO - --- Callback: block_keyword_guardrail running for agent: Great_Sage ---
+2025-07-04 10:56:58,116 - src.agents.security.model_guardrail - INFO - --- Callback: Inspecting last user message: 'What is the current market price of gold in India?...' ---
+2025-07-04 10:56:58,117 - src.agents.security.model_guardrail - INFO - --- Callback: Keyword not found. Allowing LLM call for Great_Sage. ---
+2025-07-04 10:56:59,211 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 10:56:59,219 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to four sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            3. search_agent: Agent to answer questions by searching the web for information, providing general knowledge, and delivering up-to-date results using the DuckDuckGo Search Engine.
+            4. websurf_agent: Agent to fetch and extract content from web pages given a URL, providing users with the main text or relevant information from any website they provide.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves searching the web, general knowledge, or up-to-date information, use the search_agent to provide the most relevant and current results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the websurf_agent to retrieve and present the information.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: search_agent
+Agent description: Agent to answer questions using DuckDuckGo Search Engine.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current market price of gold in India?"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 10:56:59,221 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 10:57:01,559 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 10:57:01,563 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 10:57:01,564 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'search_agent'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:27:11 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2080","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"search_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.14270896261388605}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":11,"candidates_tokens_details":[{"modality":"TEXT","token_count":11}],"prompt_token_count":644,"prompt_tokens_details":[{"modality":"TEXT","token_count":644}],"total_token_count":655},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 10:57:01,565 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'agent_name': 'search_agent'
+    },
+    id='adk-d5851be2-7977-452c-a60e-d94ac9c194f7',
+    name='transfer_to_agent'
+  )
+)] role='model'
+2025-07-04 10:57:01,565 - src.agents.security.tool_guardrail - INFO - --- Callback: block_paris_tool_guardrail running for tool 'transfer_to_agent' in agent 'Great_Sage' ---
+2025-07-04 10:57:01,565 - src.agents.security.tool_guardrail - INFO - --- Callback: Inspecting args: {'agent_name': 'search_agent'} ---
+2025-07-04 10:57:01,566 - src.agents.security.tool_guardrail - INFO - --- Callback: Allowing tool 'transfer_to_agent' to proceed. ---
+2025-07-04 10:57:01,566 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-d5851be2-7977-452c-a60e-d94ac9c194f7',
+    name='transfer_to_agent',
+    response={
+      'result': None
+    }
+  )
+)] role='user'
+2025-07-04 10:57:04,268 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 10:57:04,268 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current market price of gold in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 10:57:04,269 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 10:57:06,650 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 10:57:06,653 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 10:57:06,653 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: duckduckgo_web_search, args: {'query': 'current gold price in India', 'count': 3}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:27:16 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2358","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"query":"current gold price in India","count":3},"name":"duckduckgo_web_search"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.038732115427652994}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":15,"candidates_tokens_details":[{"modality":"TEXT","token_count":15}],"prompt_token_count":585,"prompt_tokens_details":[{"modality":"TEXT","token_count":585}],"total_token_count":600},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 10:57:06,655 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'count': 3,
+      'query': 'current gold price in India'
+    },
+    id='adk-fd0d4387-84fe-4d3c-9bea-3b92612d280c',
+    name='duckduckgo_web_search'
+  )
+)] role='model'
+2025-07-04 10:57:07,295 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-fd0d4387-84fe-4d3c-9bea-3b92612d280c',
+    name='duckduckgo_web_search',
+    response={
+      'result': CallToolResult(
+        content=[
+          TextContent(
+            text="Error: Cannot read properties of null (reading '1')",
+            type='text'
+          ),
+        ],
+        isError=True
+      )
+    }
+  )
+)] role='user'
+2025-07-04 10:57:07,992 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 10:57:07,993 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current market price of gold in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"query":"current gold price in India","count":3},"name":"duckduckgo_web_search"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"duckduckgo_web_search","response":{"result":{"content":[{"type":"text","text":"Error: Cannot read properties of null (reading '1')"}],"isError":true}}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 10:57:07,994 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 10:57:10,402 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 10:57:10,404 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 10:57:10,404 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I encountered an error while trying to fetch the current gold price in India. I will try a different search query.
+
+-----------------------------------------------------------
+Function calls:
+name: duckduckgo_web_search, args: {'query': 'gold rate today India', 'count': 3}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:27:20 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2377","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I encountered an error while trying to fetch the current gold price in India. I will try a different search query.\n"},{"function_call":{"args":{"query":"gold rate today India","count":3},"name":"duckduckgo_web_search"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.1057648031335128}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":38,"candidates_tokens_details":[{"modality":"TEXT","token_count":38}],"prompt_token_count":626,"prompt_tokens_details":[{"modality":"TEXT","token_count":626}],"total_token_count":664},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 10:57:10,405 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  text="""I encountered an error while trying to fetch the current gold price in India. I will try a different search query.
+"""
+), Part(
+  function_call=FunctionCall(
+    args={
+      'count': 3,
+      'query': 'gold rate today India'
+    },
+    id='adk-83605550-93a7-4336-aa96-c3327b13f150',
+    name='duckduckgo_web_search'
+  )
+)] role='model'
+2025-07-04 10:57:10,592 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-83605550-93a7-4336-aa96-c3327b13f150',
+    name='duckduckgo_web_search',
+    response={
+      'result': CallToolResult(
+        content=[
+          TextContent(
+            text="Error: Cannot read properties of null (reading '1')",
+            type='text'
+          ),
+        ],
+        isError=True
+      )
+    }
+  )
+)] role='user'
+2025-07-04 10:57:11,309 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 10:57:11,309 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the DuckDuckGo Search Engine.
+            You can help users by searching the web for information, answering general knowledge questions, and providing up-to-date results from the internet.
+            Use your access to DuckDuckGo to find relevant, accurate, and timely information in response to user queries.
+
+You are an agent. Your internal name is "search_agent".
+
+ The description about you is "Agent to answer questions using DuckDuckGo Search Engine."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"What is the current market price of gold in India?"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'search_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"query":"current gold price in India","count":3},"name":"duckduckgo_web_search"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"duckduckgo_web_search","response":{"result":{"content":[{"type":"text","text":"Error: Cannot read properties of null (reading '1')"}],"isError":true}}}}],"role":"user"}
+{"parts":[{"text":"I encountered an error while trying to fetch the current gold price in India. I will try a different search query.\n"},{"function_call":{"args":{"query":"gold rate today India","count":3},"name":"duckduckgo_web_search"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"duckduckgo_web_search","response":{"result":{"content":[{"type":"text","text":"Error: Cannot read properties of null (reading '1')"}],"isError":true}}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+duckduckgo_web_search: {'query': {'description': 'Search query (max 400 chars)', 'max_length': 400, 'type': <Type.STRING: 'STRING'>}, 'count': {'default': 10, 'description': 'Number of results (1-20, default 10)', 'maximum': 20.0, 'minimum': 1.0, 'type': <Type.NUMBER: 'NUMBER'>}, 'safeSearch': {'default': 'moderate', 'description': 'SafeSearch level (strict, moderate, off)', 'enum': ['strict', 'moderate', 'off'], 'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 10:57:11,310 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 10:57:13,645 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 10:57:13,647 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I am still encountering errors. It seems I am unable to directly retrieve the gold price at this moment. I recommend checking reputable financial websites or contacting a local jeweler for the most up-to-date information on gold prices in India.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:27:23 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2312","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I am still encountering errors. It seems I am unable to directly retrieve the gold price at this moment. I recommend checking reputable financial websites or contacting a local jeweler for the most up-to-date information on gold prices in India.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.28677502456976445}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":49,"candidates_tokens_details":[{"modality":"TEXT","token_count":49}],"prompt_token_count":690,"prompt_tokens_details":[{"modality":"TEXT","token_count":690}],"total_token_count":739},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 10:57:13,648 - __main__ - INFO -   [Event] Author: search_agent, Type: Event, Final: True, Content: parts=[Part(
+  text="""I am still encountering errors. It seems I am unable to directly retrieve the gold price at this moment. I recommend checking reputable financial websites or contacting a local jeweler for the most up-to-date information on gold prices in India.
+"""
+)] role='model'
+2025-07-04 10:57:13,649 - __main__ - INFO - Agent response: I am still encountering errors. It seems I am unable to directly retrieve the gold price at this moment. I recommend checking reputable financial websites or contacting a local jeweler for the most up-to-date information on gold prices in India.
+
+2025-07-04 11:04:32,042 - __main__ - INFO - >>> You: quit
+2025-07-04 11:04:32,043 - __main__ - INFO - Exiting the conversation.
+2025-07-04 11:04:32,091 - asyncio - ERROR - an error occurred during closing of asynchronous generator <async_generator object stdio_client at 0x000001A448A48CC0>
+asyncgen: <async_generator object stdio_client at 0x000001A448A48CC0>
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | BaseExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 179, in stdio_client
+    |     yield read_stream, write_stream
+    | GeneratorExit
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 173, in stdio_client
+    anyio.create_task_group() as tg,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 778, in __aexit__
+    if self.cancel_scope.__exit__(type(exc), exc, exc.__traceback__):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 457, in __exit__
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: Attempted to exit cancel scope in a different task than it was entered in
+2025-07-04 11:11:03,303 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 11:11:03,314 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 11:11:08,391 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='c977efbd-778e-4b41-ae6d-38263e58c120'
+2025-07-04 11:11:08,391 - __main__ - INFO - Session retrieved.
+2025-07-04 11:11:08,392 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='c977efbd-778e-4b41-ae6d-38263e58c120'
+2025-07-04 11:11:08,392 - __main__ - INFO - Session created.
+2025-07-04 11:11:18,609 - __main__ - INFO - >>> You: Can you search arXiv for 5 recent papers about large language models?
+2025-07-04 11:11:18,609 - __main__ - INFO - Calling agent with query: 'Can you search arXiv for 5 recent papers about large language models?'
+2025-07-04 11:11:18,612 - src.agents.security.model_guardrail - INFO - --- Callback: block_keyword_guardrail running for agent: Great_Sage ---
+2025-07-04 11:11:18,612 - src.agents.security.model_guardrail - INFO - --- Callback: Inspecting last user message: 'Can you search arXiv for 5 recent papers about large language models?...' ---
+2025-07-04 11:11:18,612 - src.agents.security.model_guardrail - INFO - --- Callback: Keyword not found. Allowing LLM call for Great_Sage. ---
+2025-07-04 11:11:19,842 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:11:19,843 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to four sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            3. research_agent: Agent to assist with research papers by finding, summarizing, and explaining academic research, providing users with relevant scholarly information and up-to-date research findings.
+            4. websurf_agent: Agent to fetch and extract content from web pages given a URL, providing users with the main text or relevant information from any website they provide.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves research papers, such as finding, summarizing, or explaining academic research, use the research_agent to provide the most relevant and current scholarly results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the websurf_agent to retrieve and present the information.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: research_agent
+Agent description: Agent to assist with research papers: finding, summarizing, and explaining academic research.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"Can you search arXiv for 5 recent papers about large language models?"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 11:11:19,845 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:11:21,976 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:11:21,979 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 11:11:21,980 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'research_agent'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:41:31 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2058","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"agent_name":"research_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.017966369336301632}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":11,"candidates_tokens_details":[{"modality":"TEXT","token_count":11}],"prompt_token_count":652,"prompt_tokens_details":[{"modality":"TEXT","token_count":652}],"total_token_count":663},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:11:21,981 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'agent_name': 'research_agent'
+    },
+    id='adk-2b4d204e-c62d-447c-a8b0-3fdda3a16fff',
+    name='transfer_to_agent'
+  )
+)] role='model'
+2025-07-04 11:11:21,982 - src.agents.security.tool_guardrail - INFO - --- Callback: block_paris_tool_guardrail running for tool 'transfer_to_agent' in agent 'Great_Sage' ---
+2025-07-04 11:11:21,982 - src.agents.security.tool_guardrail - INFO - --- Callback: Inspecting args: {'agent_name': 'research_agent'} ---
+2025-07-04 11:11:21,983 - src.agents.security.tool_guardrail - INFO - --- Callback: Allowing tool 'transfer_to_agent' to proceed. ---
+2025-07-04 11:11:21,984 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-2b4d204e-c62d-447c-a8b0-3fdda3a16fff',
+    name='transfer_to_agent',
+    response={
+      'result': None
+    }
+  )
+)] role='user'
+2025-07-04 11:11:22,102 - __main__ - ERROR - An error occurred: Connection closed
+2025-07-04 11:12:26,886 - __main__ - INFO - >>> You: what was the error that occurred?
+2025-07-04 11:12:26,887 - __main__ - INFO - Calling agent with query: 'what was the error that occurred?'
+2025-07-04 11:12:26,888 - src.agents.security.model_guardrail - INFO - --- Callback: block_keyword_guardrail running for agent: Great_Sage ---
+2025-07-04 11:12:26,889 - src.agents.security.model_guardrail - INFO - --- Callback: Inspecting last user message: 'what was the error that occurred?...' ---
+2025-07-04 11:12:26,889 - src.agents.security.model_guardrail - INFO - --- Callback: Keyword not found. Allowing LLM call for Great_Sage. ---
+2025-07-04 11:12:27,603 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:12:27,604 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to four sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            3. research_agent: Agent to assist with research papers by finding, summarizing, and explaining academic research, providing users with relevant scholarly information and up-to-date research findings.
+            4. websurf_agent: Agent to fetch and extract content from web pages given a URL, providing users with the main text or relevant information from any website they provide.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves research papers, such as finding, summarizing, or explaining academic research, use the research_agent to provide the most relevant and current scholarly results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the websurf_agent to retrieve and present the information.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+Agent name: research_agent
+Agent description: Agent to assist with research papers: finding, summarizing, and explaining academic research.
+
+
+Agent name: websurf_agent
+Agent description: Agent to fetch content from a URL provided by the user.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"Can you search arXiv for 5 recent papers about large language models?"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"agent_name":"research_agent"},"name":"transfer_to_agent"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"transfer_to_agent","response":{"result":null}}}],"role":"user"}
+{"parts":[{"text":"what was the error that occurred?"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 11:12:27,605 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:12:29,811 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:12:29,814 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I apologize, but I did not encounter any errors. I simply transferred your request to the research_agent, as it is better equipped to handle finding research papers.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:42:39 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2167","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I apologize, but I did not encounter any errors. I simply transferred your request to the research_agent, as it is better equipped to handle finding research papers.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.3361603231991039}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":34,"candidates_tokens_details":[{"modality":"TEXT","token_count":34}],"prompt_token_count":677,"prompt_tokens_details":[{"modality":"TEXT","token_count":677}],"total_token_count":711},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:12:29,815 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: True, Content: parts=[Part(
+  text="""I apologize, but I did not encounter any errors. I simply transferred your request to the research_agent, as it is better equipped to handle finding research papers.
+"""
+)] role='model'
+2025-07-04 11:12:29,816 - __main__ - INFO - Agent response: I apologize, but I did not encounter any errors. I simply transferred your request to the research_agent, as it is better equipped to handle finding research papers.
+
+2025-07-04 11:12:40,320 - __main__ - INFO - >>> You: quit
+2025-07-04 11:12:40,321 - __main__ - INFO - Exiting the conversation.
+2025-07-04 11:15:31,510 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 11:15:31,515 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 11:15:40,659 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='6dac30e9-16d9-48cd-be0e-736e454af3e5'
+2025-07-04 11:15:40,660 - __main__ - INFO - Session retrieved.
+2025-07-04 11:15:40,660 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='6dac30e9-16d9-48cd-be0e-736e454af3e5'
+2025-07-04 11:15:40,661 - __main__ - INFO - Session created.
+2025-07-04 11:16:00,749 - __main__ - INFO - >>> You: Can you search arXiv for 2 recent papers about large language models?
+2025-07-04 11:16:00,750 - __main__ - INFO - Calling agent with query: 'Can you search arXiv for 2 recent papers about large language models?'
+2025-07-04 11:16:00,853 - __main__ - ERROR - An error occurred: Connection closed
+2025-07-04 11:20:06,871 - __main__ - INFO - >>> You: quit
+2025-07-04 11:20:06,872 - __main__ - INFO - Exiting the conversation.
+2025-07-04 11:20:30,763 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 11:20:30,767 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 11:20:36,663 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='d586503d-ff1d-4591-adf6-c95aa616ae62'
+2025-07-04 11:20:36,663 - __main__ - INFO - Session retrieved.
+2025-07-04 11:20:36,664 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='d586503d-ff1d-4591-adf6-c95aa616ae62'
+2025-07-04 11:20:36,664 - __main__ - INFO - Session created.
+2025-07-04 11:21:06,586 - __main__ - INFO - >>> You: retrieve data from this webpage https://modelcontextprotocol.io/introduction
+2025-07-04 11:21:06,587 - __main__ - INFO - Calling agent with query: 'retrieve data from this webpage https://modelcontextprotocol.io/introduction'
+2025-07-04 11:21:12,146 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:21:12,147 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to two sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves research papers, such as finding, summarizing, or explaining academic research, use the tools available to provide the most relevant and current scholarly results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the tools to retrieve and present the information.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"retrieve data from this webpage https://modelcontextprotocol.io/introduction"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+load_web_page: {'url': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 11:21:12,148 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:21:14,414 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:21:14,416 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 11:21:14,416 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: load_web_page, args: {'url': 'https://modelcontextprotocol.io/introduction'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:51:24 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2163","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"url":"https://modelcontextprotocol.io/introduction"},"name":"load_web_page"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.033259485165278116}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":15,"candidates_tokens_details":[{"modality":"TEXT","token_count":15}],"prompt_token_count":572,"prompt_tokens_details":[{"modality":"TEXT","token_count":572}],"total_token_count":587},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:21:14,417 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'url': 'https://modelcontextprotocol.io/introduction'
+    },
+    id='adk-5d6622b4-ea2d-4ad5-9f08-0043c132b2f9',
+    name='load_web_page'
+  )
+)] role='model'
+2025-07-04 11:21:14,424 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-5d6622b4-ea2d-4ad5-9f08-0043c132b2f9',
+    name='load_web_page',
+    response={
+      'result': CallToolResult(
+        content=[
+          TextContent(
+            text='{"error": "Failed to execute tool \'load_web_page\': No module named \'bs4\'"}',
+            type='text'
+          ),
+        ],
+        isError=False
+      )
+    }
+  )
+)] role='user'
+2025-07-04 11:21:15,223 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:21:15,224 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to two sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves research papers, such as finding, summarizing, or explaining academic research, use the tools available to provide the most relevant and current scholarly results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the tools to retrieve and present the information.
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"retrieve data from this webpage https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"url":"https://modelcontextprotocol.io/introduction"},"name":"load_web_page"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"load_web_page","response":{"result":{"content":[{"type":"text","text":"{\"error\": \"Failed to execute tool 'load_web_page': No module named 'bs4'\"}"}],"isError":false}}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+load_web_page: {'url': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 11:21:15,226 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:21:17,765 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:21:17,767 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 11:21:17,768 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I encountered an error while trying to fetch the content of the webpage. It seems like a required module is missing. I'll try transferring this to an agent that might be better equipped to handle this.
+
+-----------------------------------------------------------
+Function calls:
+name: transfer_to_agent, args: {'agent_name': 'os_agent'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:51:27 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2405","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I encountered an error while trying to fetch the content of the webpage. It seems like a required module is missing. I'll try transferring this to an agent that might be better equipped to handle this.\n"},{"function_call":{"args":{"agent_name":"os_agent"},"name":"transfer_to_agent"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.14663860033143242}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":53,"candidates_tokens_details":[{"modality":"TEXT","token_count":53}],"prompt_token_count":622,"prompt_tokens_details":[{"modality":"TEXT","token_count":622}],"total_token_count":675},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:21:17,769 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  text="""I encountered an error while trying to fetch the content of the webpage. It seems like a required module is missing. I'll try transferring this to an agent that might be better equipped to handle this.
+"""
+), Part(
+  function_call=FunctionCall(
+    args={
+      'agent_name': 'os_agent'
+    },
+    id='adk-cced907c-d695-49f6-b03c-1888e0e52302',
+    name='transfer_to_agent'
+  )
+)] role='model'
+2025-07-04 11:21:17,773 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-cced907c-d695-49f6-b03c-1888e0e52302',
+    name='transfer_to_agent',
+    response={
+      'result': None
+    }
+  )
+)] role='user'
+2025-07-04 11:21:17,775 - google_adk.google.adk.tools._function_parameter_parse_util - WARNING - Default value is not supported in function declaration schema for Google AI.
+2025-07-04 11:21:18,615 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:21:18,616 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are an agent that can interact with the operating system and file system. 
+        You have access to tools that allow you to list the contents of directories, read the content of files, check if a path exists, and get the current working directory. 
+        Use these tools to answer user questions about the file system or perform requested actions like listing files or reading file content.
+
+You are an agent. Your internal name is "os_agent".
+
+ The description about you is "Agent to answer questions about and interact with the operating system and file system."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: Great_Sage
+Agent description: Agent to act as your personal assistant and help you with your tasks along with answering all your questions.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+Your parent agent is Great_Sage. If neither the other agents nor
+you are best for answering the question according to the descriptions, transfer
+to your parent agent.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"retrieve data from this webpage https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] called tool `load_web_page` with parameters: {'url': 'https://modelcontextprotocol.io/introduction'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `load_web_page` tool returned result: {'result': CallToolResult(meta=None, content=[TextContent(type='text', text='{\"error\": \"Failed to execute tool \\'load_web_page\\': No module named \\'bs4\\'\"}', annotations=None, meta=None)], structuredContent=None, isError=False)}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] said: I encountered an error while trying to fetch the content of the webpage. It seems like a required module is missing. I'll try transferring this to an agent that might be better equipped to handle this.\n"},{"text":"[Great_Sage] called tool `transfer_to_agent` with parameters: {'agent_name': 'os_agent'}"}],"role":"user"}
+{"parts":[{"text":"For context:"},{"text":"[Great_Sage] `transfer_to_agent` tool returned result: {'result': None}"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+list_directory: {'path': {'type': <Type.STRING: 'STRING'>}} 
+read_file: {'path': {'type': <Type.STRING: 'STRING'>}} 
+path_exists: {'path': {'type': <Type.STRING: 'STRING'>}} 
+get_current_working_directory: {} 
+-----------------------------------------------------------
+
+2025-07-04 11:21:18,617 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:21:20,948 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:21:20,949 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I am sorry, I cannot directly retrieve data from a webpage. I can list files, read files, check if a path exists, and get the current working directory. Would you like me to perform any of these actions?
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:51:30 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2297","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I am sorry, I cannot directly retrieve data from a webpage. I can list files, read files, check if a path exists, and get the current working directory. Would you like me to perform any of these actions?\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.11571406281512717}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":46,"candidates_tokens_details":[{"modality":"TEXT","token_count":46}],"prompt_token_count":789,"prompt_tokens_details":[{"modality":"TEXT","token_count":789}],"total_token_count":835},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:21:20,950 - __main__ - INFO -   [Event] Author: os_agent, Type: Event, Final: True, Content: parts=[Part(
+  text="""I am sorry, I cannot directly retrieve data from a webpage. I can list files, read files, check if a path exists, and get the current working directory. Would you like me to perform any of these actions?
+"""
+)] role='model'
+2025-07-04 11:21:20,951 - __main__ - INFO - Agent response: I am sorry, I cannot directly retrieve data from a webpage. I can list files, read files, check if a path exists, and get the current working directory. Would you like me to perform any of these actions?
+
+2025-07-04 11:21:53,182 - __main__ - INFO - >>> You: quit
+2025-07-04 11:21:53,183 - __main__ - INFO - Exiting the conversation.
+2025-07-04 11:21:53,195 - asyncio - ERROR - an error occurred during closing of asynchronous generator <async_generator object stdio_client at 0x0000018C6F508900>
+asyncgen: <async_generator object stdio_client at 0x0000018C6F508900>
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | BaseExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 179, in stdio_client
+    |     yield read_stream, write_stream
+    | GeneratorExit
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 173, in stdio_client
+    anyio.create_task_group() as tg,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 778, in __aexit__
+    if self.cancel_scope.__exit__(type(exc), exc, exc.__traceback__):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 457, in __exit__
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: Attempted to exit cancel scope in a different task than it was entered in
+2025-07-04 11:24:42,666 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 11:24:42,670 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 11:24:44,299 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='c8a06fbd-2e04-47a9-8289-52cda92c26b7'
+2025-07-04 11:24:44,300 - __main__ - INFO - Session retrieved.
+2025-07-04 11:24:44,300 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='c8a06fbd-2e04-47a9-8289-52cda92c26b7'
+2025-07-04 11:24:44,301 - __main__ - INFO - Session created.
+2025-07-04 11:25:09,524 - __main__ - INFO - >>> You: fetch me the content form this webpage https://modelcontextprotocol.io/introduction
+2025-07-04 11:25:09,524 - __main__ - INFO - Calling agent with query: 'fetch me the content form this webpage https://modelcontextprotocol.io/introduction'
+2025-07-04 11:25:15,208 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:25:15,208 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to two sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves research papers, such as finding, summarizing, or explaining academic research, use the tools available to provide the most relevant and current scholarly results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the tool 'load_web_page' tool to fetch content from a URL provided by the user
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"fetch me the content form this webpage https://modelcontextprotocol.io/introduction"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+load_web_page: {'url': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 11:25:15,210 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:25:17,316 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:25:17,318 - google_genai.types - WARNING - Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+2025-07-04 11:25:17,319 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+None
+-----------------------------------------------------------
+Function calls:
+name: load_web_page, args: {'url': 'https://modelcontextprotocol.io/introduction'}
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:55:27 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2077","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"function_call":{"args":{"url":"https://modelcontextprotocol.io/introduction"},"name":"load_web_page"}}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.01648086408774058}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":15,"candidates_tokens_details":[{"modality":"TEXT","token_count":15}],"prompt_token_count":585,"prompt_tokens_details":[{"modality":"TEXT","token_count":585}],"total_token_count":600},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:25:17,320 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_call=FunctionCall(
+    args={
+      'url': 'https://modelcontextprotocol.io/introduction'
+    },
+    id='adk-7f34e264-73d5-48f9-9613-64d0546f1a90',
+    name='load_web_page'
+  )
+)] role='model'
+2025-07-04 11:25:17,327 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: False, Content: parts=[Part(
+  function_response=FunctionResponse(
+    id='adk-7f34e264-73d5-48f9-9613-64d0546f1a90',
+    name='load_web_page',
+    response={
+      'result': CallToolResult(
+        content=[
+          TextContent(
+            text='{"error": "Failed to execute tool \'load_web_page\': No module named \'bs4\'"}',
+            type='text'
+          ),
+        ],
+        isError=False
+      )
+    }
+  )
+)] role='user'
+2025-07-04 11:25:18,135 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:25:18,136 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to two sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves research papers, such as finding, summarizing, or explaining academic research, use the tools available to provide the most relevant and current scholarly results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the tool 'load_web_page' tool to fetch content from a URL provided by the user
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"fetch me the content form this webpage https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"url":"https://modelcontextprotocol.io/introduction"},"name":"load_web_page"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"load_web_page","response":{"result":{"content":[{"type":"text","text":"{\"error\": \"Failed to execute tool 'load_web_page': No module named 'bs4'\"}"}],"isError":false}}}}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+load_web_page: {'url': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 11:25:18,137 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:25:20,445 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:25:20,447 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I encountered an error when trying to fetch the content from the webpage. It seems like I'm missing a necessary module ('bs4'). I'll try to address this issue and fetch the content again.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:55:30 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2285","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I encountered an error when trying to fetch the content from the webpage. It seems like I'm missing a necessary module ('bs4'). I'll try to address this issue and fetch the content again.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.1455815780994504}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":43,"candidates_tokens_details":[{"modality":"TEXT","token_count":43}],"prompt_token_count":635,"prompt_tokens_details":[{"modality":"TEXT","token_count":635}],"total_token_count":678},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:25:20,449 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: True, Content: parts=[Part(
+  text="""I encountered an error when trying to fetch the content from the webpage. It seems like I'm missing a necessary module ('bs4'). I'll try to address this issue and fetch the content again.
+"""
+)] role='model'
+2025-07-04 11:25:20,449 - __main__ - INFO - Agent response: I encountered an error when trying to fetch the content from the webpage. It seems like I'm missing a necessary module ('bs4'). I'll try to address this issue and fetch the content again.
+
+2025-07-04 11:26:04,121 - __main__ - INFO - >>> You: fetch me the content form this webpage https://modelcontextprotocol.io/introduction
+2025-07-04 11:26:04,122 - __main__ - INFO - Calling agent with query: 'fetch me the content form this webpage https://modelcontextprotocol.io/introduction'
+2025-07-04 11:26:04,921 - google_adk.google.adk.models.google_llm - INFO - Sending out request, model: gemini-2.0-flash, backend: GoogleLLMVariant.GEMINI_API, stream: False
+2025-07-04 11:26:04,922 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Request:
+-----------------------------------------------------------
+System Instruction:
+You are Great_Sage, a highly capable AI assistant.
+            Your primary goal is to help users with any task or question they have.
+            You have access to various tools and specialized agents that you can utilize to provide comprehensive assistance.
+            You have access to two sub-agents:
+            1. os_agent: Agent to answer questions about and interact with the operating system and file system.
+            2. weather_agent: Agent to answer questions about the time and weather in a city.
+            When a user asks for something that can be answered or executed better by a sub-agent that you possess, delegate the task to the appropriate sub-agent.
+            Always maintain a helpful, professional, and friendly demeanor while addressing users' needs efficiently and accurately.
+            If you're unsure about something or don't have the necessary tools, be honest about your limitations.
+            If a user's request involves research papers, such as finding, summarizing, or explaining academic research, use the tools available to provide the most relevant and current scholarly results.
+            If a user's request involves fetching or extracting content from a specific web page or URL, use the tool 'load_web_page' tool to fetch content from a URL provided by the user
+
+You are an agent. Your internal name is "Great_Sage".
+
+ The description about you is "Agent to act as your personal assistant and help you with your tasks along with answering all your questions."
+
+
+You have a list of other agents to transfer to:
+
+
+Agent name: os_agent
+Agent description: Agent to answer questions about and interact with the operating system and file system.
+
+
+Agent name: weather_time_agent
+Agent description: Agent to answer questions about the time and weather (state-aware unit) in a city, saves report to state.
+
+
+If you are the best to answer the question according to your description, you
+can answer it.
+
+If another agent is better for answering the question according to its
+description, call `transfer_to_agent` function to transfer the
+question to that agent. When transferring, do not generate any text other than
+the function call.
+
+-----------------------------------------------------------
+Contents:
+{"parts":[{"text":"fetch me the content form this webpage https://modelcontextprotocol.io/introduction"}],"role":"user"}
+{"parts":[{"function_call":{"args":{"url":"https://modelcontextprotocol.io/introduction"},"name":"load_web_page"}}],"role":"model"}
+{"parts":[{"function_response":{"name":"load_web_page","response":{"result":{"content":[{"type":"text","text":"{\"error\": \"Failed to execute tool 'load_web_page': No module named 'bs4'\"}"}],"isError":false}}}}],"role":"user"}
+{"parts":[{"text":"I encountered an error when trying to fetch the content from the webpage. It seems like I'm missing a necessary module ('bs4'). I'll try to address this issue and fetch the content again.\n"}],"role":"model"}
+{"parts":[{"text":"fetch me the content form this webpage https://modelcontextprotocol.io/introduction"}],"role":"user"}
+-----------------------------------------------------------
+Functions:
+transfer_to_agent: {'agent_name': {'type': <Type.STRING: 'STRING'>}} 
+load_web_page: {'url': {'type': <Type.STRING: 'STRING'>}} 
+-----------------------------------------------------------
+
+2025-07-04 11:26:04,922 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2025-07-04 11:26:07,043 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 200 OK"
+2025-07-04 11:26:07,045 - google_adk.google.adk.models.google_llm - INFO - 
+LLM Response:
+-----------------------------------------------------------
+Text:
+I am unable to fetch the content from the webpage. My apologies.
+
+-----------------------------------------------------------
+Function calls:
+
+-----------------------------------------------------------
+Raw response:
+{"sdk_http_response":{"headers":{"content-type":"application/json; charset=UTF-8","vary":"Origin, X-Origin, Referer","content-encoding":"gzip","date":"Fri, 04 Jul 2025 05:56:16 GMT","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=2097","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000","transfer-encoding":"chunked"}},"candidates":[{"content":{"parts":[{"text":"I am unable to fetch the content from the webpage. My apologies.\n"}],"role":"model"},"finish_reason":"STOP","avg_logprobs":-0.3738305727640788}],"model_version":"gemini-2.0-flash","usage_metadata":{"candidates_token_count":15,"candidates_tokens_details":[{"modality":"TEXT","token_count":15}],"prompt_token_count":694,"prompt_tokens_details":[{"modality":"TEXT","token_count":694}],"total_token_count":709},"automatic_function_calling_history":[]}
+-----------------------------------------------------------
+
+2025-07-04 11:26:07,046 - __main__ - INFO -   [Event] Author: Great_Sage, Type: Event, Final: True, Content: parts=[Part(
+  text="""I am unable to fetch the content from the webpage. My apologies.
+"""
+)] role='model'
+2025-07-04 11:26:07,047 - __main__ - INFO - Agent response: I am unable to fetch the content from the webpage. My apologies.
+
+2025-07-04 11:26:56,758 - __main__ - INFO - >>> You: quit
+2025-07-04 11:26:56,759 - __main__ - INFO - Exiting the conversation.
+2025-07-04 11:26:56,771 - asyncio - ERROR - an error occurred during closing of asynchronous generator <async_generator object stdio_client at 0x0000018229568900>
+asyncgen: <async_generator object stdio_client at 0x0000018229568900>
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | BaseExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 179, in stdio_client
+    |     yield read_stream, write_stream
+    | GeneratorExit
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\mcp\client\stdio\__init__.py", line 173, in stdio_client
+    anyio.create_task_group() as tg,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 778, in __aexit__
+    if self.cancel_scope.__exit__(type(exc), exc, exc.__traceback__):
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\IAmTheWizard\Desktop\New folder (2)\Projects\Python\AgenticPractice\Great-Sage\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 457, in __exit__
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: Attempted to exit cancel scope in a different task than it was entered in
+2025-07-04 11:30:51,416 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 11:30:51,419 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 11:30:53,749 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='7eec7585-ba1d-41e1-bb76-b7ac74132563'
+2025-07-04 11:30:53,750 - __main__ - INFO - Session retrieved.
+2025-07-04 11:30:53,750 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='7eec7585-ba1d-41e1-bb76-b7ac74132563'
+2025-07-04 11:30:53,751 - __main__ - INFO - Session created.
+2025-07-04 11:31:09,081 - __main__ - INFO - >>> You: fetch me the content from this webpage https://modelcontextprotocol.io/introduction
+2025-07-04 11:31:09,082 - __main__ - INFO - Calling agent with query: 'fetch me the content from this webpage https://modelcontextprotocol.io/introduction'
+2025-07-04 11:31:14,445 - __main__ - ERROR - An error occurred: Timed out while waiting for response to ClientRequest. Waited 5.0 seconds.
+2025-07-04 11:31:38,510 - __main__ - INFO - >>> You: fetch me the content from this webpage https://modelcontextprotocol.io/introduction
+2025-07-04 11:31:38,511 - __main__ - INFO - Calling agent with query: 'fetch me the content from this webpage https://modelcontextprotocol.io/introduction'
+2025-07-04 11:31:43,526 - __main__ - ERROR - An error occurred: Timed out while waiting for response to ClientRequest. Waited 5.0 seconds.
+2025-07-04 11:32:15,986 - __main__ - INFO - >>> You: quit
+2025-07-04 11:32:15,987 - __main__ - INFO - Exiting the conversation.
+2025-07-04 11:32:30,145 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 11:32:30,149 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 11:32:33,091 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='4e51c7c7-b81f-4ff9-be98-e40182ee29dd'
+2025-07-04 11:32:33,093 - __main__ - INFO - Session retrieved.
+2025-07-04 11:32:33,094 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='4e51c7c7-b81f-4ff9-be98-e40182ee29dd'
+2025-07-04 11:32:33,096 - __main__ - INFO - Session created.
+2025-07-04 11:32:34,516 - __main__ - INFO - >>> You: fetch me the content from this webpage https://modelcontextprotocol.io/introduction
+2025-07-04 11:32:34,516 - __main__ - INFO - Calling agent with query: 'fetch me the content from this webpage https://modelcontextprotocol.io/introduction'
+2025-07-04 11:32:39,542 - __main__ - ERROR - An error occurred: Timed out while waiting for response to ClientRequest. Waited 5.0 seconds.
+2025-07-04 11:32:45,433 - __main__ - INFO - >>> You: hello
+2025-07-04 11:32:45,433 - __main__ - INFO - Calling agent with query: 'hello'
+2025-07-04 11:32:50,453 - __main__ - ERROR - An error occurred: Timed out while waiting for response to ClientRequest. Waited 5.0 seconds.
+2025-07-04 11:32:56,951 - __main__ - INFO - >>> You: quit
+2025-07-04 11:32:56,952 - __main__ - INFO - Exiting the conversation.
+2025-07-04 11:36:05,712 - __main__ - INFO - Runner created for agent 'Great_Sage'.
+2025-07-04 11:36:05,716 - __main__ - INFO - Starting Great-Sage...
+2025-07-04 11:36:07,545 - __main__ - INFO - Getting session with App='Great_Sage', User='user_1', Session='0c8eb5c9-ee84-41dd-b09c-aa3532821708'
+2025-07-04 11:36:07,546 - __main__ - INFO - Session retrieved.
+2025-07-04 11:36:07,547 - __main__ - INFO - Creating session with App='Great_Sage', User='user_1', Session='0c8eb5c9-ee84-41dd-b09c-aa3532821708'
+2025-07-04 11:36:07,547 - __main__ - INFO - Session created.
+2025-07-04 11:36:10,330 - __main__ - INFO - >>> You: Hello
+2025-07-04 11:36:10,331 - __main__ - INFO - Calling agent with query: 'Hello'
+2025-07-04 11:36:15,363 - __main__ - ERROR - An error occurred: Timed out while waiting for response to ClientRequest. Waited 5.0 seconds.
+2025-07-04 12:18:59,647 - __main__ - INFO - >>> You: quit
+2025-07-04 12:18:59,650 - __main__ - INFO - Exiting the conversation.

@@ -112,15 +112,10 @@ Great-Sage/
 │   │   │   └── __init__.py
 │   │   │
 │   │   ├── tools/
-│   │   │   ├── os_tool/
-│   │   │   │   ├── __init__.py
-│   │   │   │   └── os_tool.py
-│   │   │   │
-│   │   │   ├── weather_tool/
-│   │   │   │   ├── __init__.py
-│   │   │   │   └── weather_tool.py
-│   │   │   │
-│   │   │   └── __init__.py
+│   │   │   ├── __init__.py
+│   │   │   ├── os_tools.py
+│   │   │   ├── session_tools.py
+│   │   │   └── weather_tools.py
 │   │   │
 │   │   ├── __init__.py
 │   │   ├── os_agent.py

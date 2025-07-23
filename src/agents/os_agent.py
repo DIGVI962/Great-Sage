@@ -2,7 +2,7 @@
 
 import os
 from google.adk.agents import Agent
-from agents.tools.os_tool.os_tool import list_directory, read_file, path_exists, get_current_working_directory
+from src.agents.tools.os_tools import list_directory, read_file, path_exists, get_current_working_directory
 
 GOOGLE_MODEL_NAME = os.getenv("GOOGLE_MODEL_NAME", "gemini-2.0-flash")
 

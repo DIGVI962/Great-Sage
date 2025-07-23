@@ -11,3 +11,7 @@ wheels/
 
 # environment files
 .env
+
+.vscode
+
+logs/

@@ -1,6 +1,6 @@
 """This module is the main entry point for the Great-Sage application."""
 
-#import asyncio
+import asyncio
 import dotenv
 import os
 import uuid
@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging.config
 from logging import DEBUG
 from google.adk.runners import Runner
-from google.adk.sessions import InMemorySessionService, Session
+from google.adk.sessions import InMemorySessionService, DatabaseSessionService, Session
 from google.genai import types
 import uvicorn
 from agent import root_agent
@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 # --- FastAPI Setup ---
 # Initialize FastAPI application and configure CORS middleware
-app = fastapi.FastAPI()
+app = fastapi.FastAPI() 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -47,10 +47,18 @@ app.add_middleware(
 # --- Session Management ---
 # SessionService stores conversation history & state.
 session_service = InMemorySessionService()
+#db_url = "sqlite:///./my_agent_data.db"
+#session_service = DatabaseSessionService(db_url=db_url)
 
 APP_NAME = "Great_Sage"
 USER_ID = "user_1"
 SESSION_ID = str(uuid.uuid4())
+
+
+# Define initial state data - user prefers Celsius initially
+initial_state = {
+    "user_preference_temperature_unit": "Celsius"
+}
 
 
 # --- Runner Setup ---
@@ -64,22 +72,23 @@ logger.info(f"Runner created for agent '{runner.agent.name}'.")
 
 
 # --- Session Management Functions ---
-def create_session(user_id: str, session_id: str) -> None:
+async def create_session(user_id: str, session_id: str) -> None:
     """Function to create a new session to manage the conversation."""
     logger.info(f"Creating session with App='{APP_NAME}', User='{user_id}', Session='{session_id}'")
 
-    session_service.create_session(
+    await session_service.create_session(
         app_name=APP_NAME,
         user_id=user_id,
-        session_id=session_id
+        session_id=session_id,
+        state=initial_state
     )
     logger.info(f"Session created.")
 
-def get_session(user_id: str, session_id: str) -> Session:
+async def get_session(user_id: str, session_id: str) -> Session | None:
     """Function to get a session by user_id and session_id."""
     logger.info(f"Getting session with App='{APP_NAME}', User='{user_id}', Session='{session_id}'")
 
-    session = session_service.get_session(app_name=APP_NAME, user_id=user_id, session_id=session_id)
+    session = await session_service.get_session(app_name=APP_NAME, user_id=user_id, session_id=session_id)
     logger.info(f"Session retrieved.")
 
     return session
@@ -124,8 +133,8 @@ async def run_conversation() -> None:
     user_id = input("Enter your user ID: ") or USER_ID
     session_id = input("Enter your session ID: ") or SESSION_ID
     
-    if(get_session(user_id=user_id, session_id=session_id) is None):
-        create_session(user_id=user_id, session_id=session_id)
+    if(await get_session(user_id=user_id, session_id=session_id) is None):
+        await create_session(user_id=user_id, session_id=session_id)
 
     while True:
         try:
@@ -155,8 +164,8 @@ async def chat(request: StateRequest) -> StateResponse:
     if(user_query is None or user_query.strip.len() == 0):
         return StateResponse(status=400, response="User query is empty or invalid.")
 
-    if(get_session(user_id=user_id, session_id=session_id) is None):
-        create_session(user_id=user_id, session_id=session_id)
+    if(await get_session(user_id=user_id, session_id=session_id) is None):
+        await create_session(user_id=user_id, session_id=session_id)
     
     try:
         agent_response = await call_agent_async(query=user_query, runner=runner, user_id=user_id, session_id=session_id)
@@ -170,7 +179,7 @@ async def chat(request: StateRequest) -> StateResponse:
 # Run the FastAPI application
 if __name__ == "__main__":
     try:
-        uvicorn.run("main:app", host="0.0.0.0", port=DEPLOYMENT_PORT)
-        #asyncio.run(run_conversation())
+        #uvicorn.run("main:app", host="0.0.0.0", port=DEPLOYMENT_PORT)
+        asyncio.run(run_conversation())
     except Exception as e:
         logger.error(f"An error occurred: {e}")
